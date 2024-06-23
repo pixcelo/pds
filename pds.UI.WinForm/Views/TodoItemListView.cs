@@ -1,4 +1,5 @@
 using pds.UI.WinForm.ViewModels;
+using pds.UI.WinForm.Views;
 
 namespace pds.UI.WinForm;
 
@@ -14,7 +15,7 @@ public partial class TodoItemListView : Form
     }
 
     /// <summary>
-    /// ビューモデルのデータバインド
+    /// データバインド
     /// </summary>
     private void DataBind()
     {
@@ -29,6 +30,9 @@ public partial class TodoItemListView : Form
     /// <param name="e"></param>
     private void AddButton_Click(object sender, EventArgs e)
     {
-
+        using (var form = new TodoItemSaveView())
+        {
+            form.ShowDialog();
+        }
     }
 }

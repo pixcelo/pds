@@ -10,5 +10,11 @@ public interface ITodoItemRepository
     /// <param name="todoId"></param>
     /// <returns></returns>
     IReadOnlyList<TodoItemEntity> GetTodoItems();
+
+    /// <summary>
+    /// TODOアイテムを保存する
+    /// </summary>
+    /// <param name="todoItem"></param>
+    void Save(TodoItemEntity todoItem);
 }
 
