@@ -18,10 +18,7 @@ public class TodoItemListViewModel : ViewModelBase
     {
         this.todoItem = todoItem;
 
-        foreach (var entity in todoItem.GetTodoItems())
-        {
-            this.TodoItems.Add(new TodoItemListViewModelTodoItem(entity));
-        }
+        this.Refresh();
     }
 
     /// <summary>
@@ -29,5 +26,18 @@ public class TodoItemListViewModel : ViewModelBase
     /// </summary>
     public BindingList<TodoItemListViewModelTodoItem> TodoItems { get; set; }
             = new BindingList<TodoItemListViewModelTodoItem>();
+
+    /// <summary>
+    /// TODOアイテムをリフレッシュする
+    /// </summary>
+    public void Refresh()
+    {
+        this.TodoItems.Clear();
+
+        foreach (var entity in todoItem.GetTodoItems())
+        {
+            this.TodoItems.Add(new TodoItemListViewModelTodoItem(entity));
+        }
+    }
 }
 

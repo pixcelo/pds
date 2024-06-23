@@ -30,9 +30,15 @@ public partial class TodoItemListView : Form
     /// <param name="e"></param>
     private void AddButton_Click(object sender, EventArgs e)
     {
-        using (var form = new TodoItemSaveView())
+        using (var form = new TodoItemSaveView(this.TodoItemSaveViewOnCloseCallBack))
         {
             form.ShowDialog();
+            this.viewModel.Refresh();
         }
+    }
+
+    private void TodoItemSaveViewOnCloseCallBack(TodoItemSaveView form, DialogResult result)
+    {
+        this.viewModel.Refresh();
     }
 }

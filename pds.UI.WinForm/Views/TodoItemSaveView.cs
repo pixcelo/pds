@@ -1,17 +1,24 @@
-﻿using pds.Domain.Enums;
-using pds.UI.WinForm.ViewModels;
+﻿using pds.UI.WinForm.ViewModels;
+using System.ComponentModel;
 
 namespace pds.UI.WinForm.Views;
 
 public partial class TodoItemSaveView : Form
 {
     private TodoItemSaveViewModel viewModel = new TodoItemSaveViewModel();
+    private Action<TodoItemSaveView, DialogResult> onCloseCallBack;
 
     public TodoItemSaveView()
     {
         InitializeComponent();
 
         this.DataBind();
+    }
+
+    public TodoItemSaveView(        
+        Action<TodoItemSaveView, DialogResult> todoItemSaveViewOnCloseCallBack) : this()
+    {
+        this.onCloseCallBack = todoItemSaveViewOnCloseCallBack;
     }
 
     /// <summary>
@@ -35,5 +42,27 @@ public partial class TodoItemSaveView : Form
     private void SaveButton_Click(object sender, EventArgs e)
     {
         this.viewModel.Save();
+
+        MessageBox.Show(
+            "保存しました。",
+            "情報",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+
+        this.Close();
+    }
+
+    /// <summary>
+    /// 画面を閉じる際の処理
+    /// </summary>
+    /// <param name="e"></param>
+    protected override void OnFormClosed(FormClosedEventArgs e)
+    {
+        if (this.onCloseCallBack != null)
+        {
+            this.onCloseCallBack(this, this.DialogResult);
+        }
+
+        base.OnFormClosed(e);
     }
 }

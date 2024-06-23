@@ -1,7 +1,5 @@
 ﻿using pds.Domain.Entities;
 using pds.Domain.Repositoriers;
-using System.ComponentModel;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace pds.UI.WinForm.ViewModels;
 
