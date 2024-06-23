@@ -1,0 +1,14 @@
+﻿using pds.Domain.Entities;
+
+namespace pds.Domain.Repositoriers;
+
+public interface ITodoItemRepository
+{
+    /// <summary>
+    /// TODOアイテムを取得する
+    /// </summary>
+    /// <param name="todoId"></param>
+    /// <returns></returns>
+    IReadOnlyList<TodoItemEntity> GetTodoItems();
+}
+
